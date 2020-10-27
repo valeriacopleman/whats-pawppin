@@ -1,3 +1,3 @@
-class DogPark < ActiveRecord::Base
+class Dogpark < ActiveRecord::Base
     belongs_to :user
 end
