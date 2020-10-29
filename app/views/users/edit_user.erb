@@ -1,0 +1,19 @@
+<h1>Edit Profile:</h1>
+  <div>
+    <form action="/profile/<%=@user.id%>" method="POST">
+      <input type="hidden" name="_method" value="patch">
+      <div class="form-group">
+        <p>New Name: <input type="text" name="name"></p>
+        <p>New Username: <input type="text" class="form-control" name="username" required value="<%=@user.username%>"></p>
+       
+        <label>New Password: <input type="password" class="form-control" required name="password" value="<%=@user.password%>"></p>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+  <form action="/profile/<%=@user.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Account">
+  </form>
+  <br>
+  <p><a href="/profile/<%=@user.id%>">Back to your account</a></p>
