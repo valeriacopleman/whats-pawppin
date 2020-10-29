@@ -1,36 +1,51 @@
 class DogsController < ApplicationController
 
     get '/dogs' do
-        if logged_in?
-            @dogs = current_user.dogs
-            erb :'/dogs/show'
+        @dogs = Dog.all
+        erb :'dogs/index'
+      end
+  
+      get '/dogs/new' do
+        erb :'dogs/new'
+      end
+  
+      post '/dogs' do
+        dog = current_user.dogs.build(params)
+        if dog.save
+          redirect "/dogs/#{dog.id}"
         else
-            erb :'fail2'
+          redirect '/dogs/new'
         end
-    end
+      end
 
-    get '/dogs/new' do
-        if logged_in?
-            erb :'dogs/new'
+      get '/dogs/:id' do
+        @dog = Dog.find_by(id: params[:id])
+        if @dog
+          erb :'dogs/show'
         else
-            erb :'fail2'
+          redirect '/dogs'
         end
-    end
-
-    post '/dogs' do
-        @dog = current_user.dogs.build(params)
-        if @dog.save
-            redirect to "/dogs/#{@dog.id}"
+      end
+  
+      get '/dogs/:id/edit' do
+        @owner = Owner.all 
+        @dog = Dog.find_by(params)
+        erb :'dogs/edit'
+      end
+  
+      patch '/dogs/:id' do 
+        dog = Dog.find_by(id: params[:id])
+        if dog.update(name: params[:name], age: params[:age], breed: params[:breed])
+          redirect "/dogs/#{dog.id}"
+        else 
+          redirect "dogs/#{dog.id}/edit"
         end
-    end
-
-    get '/dogs/:id' do
-        if logged_in?
-            @dog = Dog.find_by(params[:id])
-            erb :'/dogs/show'
-        else
-            erb :'fail2'
-        end
-    end
+      end
+  
+      delete '/dogs/:id' do
+        @dog = Dog.find_by(id: params[:id])
+        @dog.destroy
+        redirect '/dogs'
+      end
 
 end

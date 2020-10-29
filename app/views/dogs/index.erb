@@ -1,1 +1,11 @@
-index
+<h4>My Dogs:</h4>
+<br>
+<ul>
+  <% current_user.dogs.each do |dog| %>
+    <h4><%= dog.name %></h4>
+    <li>Age: <%= dog.age %></li>
+    <p>Breed: <%= dog.breed %></p>
+    <a href="/dogs/<%= dog.id %>/edit">Edit/Delete Dog</a>
+  <% end %>
+</ul>
+<p><a href="/owners">Back</a></p>

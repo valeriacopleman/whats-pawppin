@@ -13,24 +13,24 @@
 
 ActiveRecord::Schema.define(version: 20201027152050) do
 
-  create_table "dogparks", force: :cascade do |t|
-    t.string  "name"
-    t.text    "location"
-    t.text    "description"
-    t.integer "user_id"
-  end
-
   create_table "dogs", force: :cascade do |t|
     t.string  "name"
     t.integer "age"
     t.string  "breed"
-    t.integer "user_id"
+    t.integer "owner_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string "name"
     t.string "username"
     t.string "password_digest"
+  end
+
+  create_table "parks", force: :cascade do |t|
+    t.string  "name"
+    t.text    "location"
+    t.text    "description"
+    t.integer "owner_id"
   end
 
 end

@@ -1,9 +1,6 @@
-<h4>My Dogs:</h4>
-<br>
-<ul>
-  <% current_user.dogs.each do |d| %>
-    <h4><%= d.name %></h4>
+<h3>My Dogs:</h3>
+<% current_user.dogs.each do |d| %>
+    <h4><%= d.name %> </h4>
     <li>Age: <%= d.age %></li>
     <p>Breed: <%= d.breed %></p>
-  <%end%>
-</ul>
+  <% end %>

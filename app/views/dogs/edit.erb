@@ -1,0 +1,22 @@
+<h1>Edit a dog:</h1>
+<br>
+  <form method="POST" action="/dogs/<%= @dog.id %>"> 
+  <input type="hidden" id='hidden' name="_method" value="PATCH">
+    <label>Name: <input type="text" name="name" value="<%= @dog.name %>"></label>
+    <br>
+    <br>
+    <label>Age: <input type="text" name="age" value="<%= @dog.age %>"></label>
+    <br>
+    <br>
+    <label>Breed: <input type="text" name="breed" value="<%= @dog.breed %>"></label>
+    <br>
+    <br>
+    <input type="submit">
+</form>
+
+<p><form method="POST" action="/dogs/<%= @dog.id %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Dog">
+  </form></p>
+
+  <a href="/dogs">Cancel</a>

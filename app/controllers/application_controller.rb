@@ -19,7 +19,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      @current_user ||= Owner.find(session[:owner_id]) if session[:owner_id]
     end
   end
 

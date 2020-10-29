@@ -1,5 +1,5 @@
 <div class="container">
-<h1>Welcome, <%= @user.name %>!</h1>
+<h1>Welcome, <%= @owner.name %>!</h1>
 
 <h3>My Dogs:</h3>
 <% current_user.dogs.each do |d| %>
@@ -8,10 +8,10 @@
     <p>Breed: <%= d.breed %></p>
   <% end %>
 <p><a href="/dogs/new">+ Add Dog</a></p>
-<p><a href="dogparks/index">My Dogparks</a></p>
-<h1>Parks I like to visit: </h1>
+<p><a href="/dogs">+ Edit Dog</a></p>
+<h1><a href="/parks">Parks I like to visit!</a></h1>
 
 <br>
 <p><a href="/logout">Log Out</a></p>
-<p><a href="/profile/<%= @user.id %>/edit">Edit Profile</a></p>
+<p><a href="/owners/<%= @owner.id %>/edit">Edit Profile</a></p>
 </div>

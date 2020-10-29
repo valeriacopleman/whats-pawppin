@@ -5,8 +5,9 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 
-
+use Rack::MethodOverride
 use DogsController
-use DogparksController
-use UsersController
+use ParksController
+use OwnersController
+
 run ApplicationController

@@ -1,0 +1,8 @@
+<h2>My Dog Parks<h/2>
+
+<% @parks.each do |p| %>
+    <p><a href="/parks/<%= p.id %>"><%= p.name %></a></p>
+<% end %>
+
+<p><a href="/parks/new"> Add A Dog Park</a></p>
+<p><a href="/owners/<%= @owner.id %>">Home</a></p>

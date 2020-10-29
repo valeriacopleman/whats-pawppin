@@ -4,7 +4,7 @@ class CreateDogs < ActiveRecord::Migration
       t.string :name
       t.integer :age
       t.string :breed
-      t.integer :user_id
+      t.integer :owner_id
     end
   end
 end

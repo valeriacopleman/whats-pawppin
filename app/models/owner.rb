@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class Owner < ActiveRecord::Base
     has_many :parks
     has_many :dogs
 
