@@ -5,7 +5,8 @@
     <h4><%= dog.name %></h4>
     <li>Age: <%= dog.age %></li>
     <p>Breed: <%= dog.breed %></p>
-    <a href="/dogs/<%= dog.id %>/edit">Edit/Delete Dog</a>
+    <a href="/dogs/<%= dog.id %>/edit">+ Edit/Delete Dog</a>
   <% end %>
 </ul>
-<p><a href="/owners">Back</a></p>
+<br>
+<a href="/owners/<%= current_user.id %>">Home</a>

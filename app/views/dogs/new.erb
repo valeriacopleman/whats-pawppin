@@ -1,4 +1,5 @@
 <h1>Add a dog:</h1>
+<hr>
 <br>
   <form method="POST" action="/dogs">
     <label>Name: <input type="text" name="name"></label>
@@ -10,5 +11,10 @@
     <label>Breed: <input type="text" name="breed"></label>
     <br>
     <br>
-    <input type="submit" value="Add Dog">
+    <input type="submit">
+    
 </form>
+<br>
+<hr>
+<br>
+<a href="/owners/<%= current_user.id %>">Cancel</a>

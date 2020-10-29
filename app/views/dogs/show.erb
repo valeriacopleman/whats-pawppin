@@ -1,6 +1,9 @@
-<h3>My Dogs:</h3>
-<% current_user.dogs.each do |d| %>
-    <h4><%= d.name %> </h4>
-    <li>Age: <%= d.age %></li>
-    <p>Breed: <%= d.breed %></p>
-  <% end %>
+<h3>My Dog: <%= @dog.name %></h3>
+<hr>
+<br>
+    <p>Age: <%= @dog.age %></p>
+    
+    <p>Breed: <%= @dog.breed %></p>
+    <hr>
+<br>
+    <a href="/owners/<%= @dog.owner_id %>">Home</a>

@@ -1,8 +1,9 @@
-<h4><%= @park.name %></h4>
+<h3><%= @park.name %></h3>
 <hr>
 <br>
-<p><%= @park.location %></p>
-<p><%= @park.description %></p>
-<a href="/parks/<%= @park.id %>/edit">Edit/Delete Park</a>
+<p>Location: <%= @park.location %></p>
+<p>Description: <%= @park.description %></p>
+<p><a href="/parks/<%= @park.id %>/edit">+ Edit/Delete Park</a></p>
+<hr>
 <br>
 <a href="/parks">Back</a>

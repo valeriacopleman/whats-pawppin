@@ -1,7 +1,8 @@
 class DogsController < ApplicationController
 
     get '/dogs' do
-        @dogs = Dog.all
+        #binding.pry
+        @dogs = current_user.dogs
         erb :'dogs/index'
       end
   
@@ -19,6 +20,7 @@ class DogsController < ApplicationController
       end
 
       get '/dogs/:id' do
+        #binding.pry
         @dog = Dog.find_by(id: params[:id])
         if @dog
           erb :'dogs/show'

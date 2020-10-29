@@ -2,9 +2,12 @@
 
 <form method="POST" action="/parks/<%= @park.id %>"> 
 <input type="hidden" id='hidden' name="_method" value="PATCH">
-    <label>Name: <input type="text" name="name" value="<%= @park.name %>"></label>
-    <label>Location: <input type="text" name="location" value="<%= @park.location %>"</label>
-    <label>Description: <textarea name="description" cols="30" rows="10"><%= @park.description %></textarea></label>
+    <label>Name: <input type="text" name="name" value="<%= @park.name %>"></label><br>
+    <br>
+    <label>Location: <input type="text" name="location" value="<%= @park.location %>"</label><br>
+    <br>
+    <label>Description: <br><textarea name="description" cols="30" rows="10"><%= @park.description %></textarea></label><br>
+    <br>
     <input type="submit">
 </form>
 
@@ -12,5 +15,6 @@
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Park">
   </form></p>
-
+<hr>
+<br>
   <a href="/parks/<%= @park.id %>">Cancel</a>

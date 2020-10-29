@@ -5,7 +5,8 @@
       
   <label>New Name: <input type="text" name="name" value="<%= @owner.name %>"></label>
   <label>New Username: <input type="text"  name="username" value="<%= @owner.username %>" ></label>
-      <button type="submit"> Submit</button>
+  <label>New Password: <input type="text"  name="password" value="<%= @owner.password %>" ></label>  
+  <input type="submit">
       <br>
     </form>
     
@@ -15,4 +16,4 @@
     <input type="submit" value="Delete Profile">
   </form>
   <br>
-  <p><a href="/owners/<%= @owner.id %>">Back</a></p>
+  <p><a href="/owners/<%= current_user.id %>">Back</a></p>
