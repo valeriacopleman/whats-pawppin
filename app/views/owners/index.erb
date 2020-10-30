@@ -1,0 +1,21 @@
+
+<div class="container">
+<h1>Welcome, <%= @owner.name %>!</h1>
+<hr>
+<br>
+<h2><a href="/parks">My Favorite Dog Parks</a></h2>
+
+<h3>My Dogs:</h3>
+<hr>
+<br>
+<% current_user.dogs.each.with_index do |d| %>
+    <h4><%= d.name %> </h4>
+    <li> > Age: <%= d.age %></li>
+    <p>> Breed: <%= d.breed %></p>
+  <% end %>
+<p><a href="/dogs/new">+ Add Dog</a></p>
+<p><a href="/dogs">+ Edit/Delete Dogs</a></p>
+<hr>
+<br>
+<p><a href="/logout">Log Out</a></p>
+</div>

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         @owner = Owner.find_by(username: params[:username])
         if @owner && @owner.authenticate(params[:password])
           session[:owner_id] = @owner.id
-          erb :'owners/show'
+          redirect '/whatspawppin'
         else
           erb :failure
         end
