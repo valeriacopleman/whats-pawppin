@@ -9,5 +9,6 @@ use Rack::MethodOverride
 use DogsController
 use ParksController
 use OwnersController
+use SessionsController
 
 run ApplicationController

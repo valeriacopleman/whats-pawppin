@@ -1,12 +1,15 @@
-<h4>My Dogs:</h4>
+<h1>My Dogs:</h1>
+<hr>
 <br>
 <ul>
   <% current_user.dogs.each do |dog| %>
     <h4><%= dog.name %></h4>
     <li>Age: <%= dog.age %></li>
-    <p>Breed: <%= dog.breed %></p>
+    <li><p>Breed: <%= dog.breed %></p></li>
     <a href="/dogs/<%= dog.id %>/edit">+ Edit/Delete Dog</a>
   <% end %>
 </ul>
+<br>
+<hr>
 <br>
 <a href="/owners/<%= current_user.id %>">Home</a>

@@ -1,11 +1,15 @@
 <h1>Edit Profile:</h1>
-  
+<hr>
+<br>
 <form method="POST" action="/owners/<%= @owner.id %>">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
       
-  <label>New Name: <input type="text" name="name" value="<%= @owner.name %>"></label>
-  <label>New Username: <input type="text"  name="username" value="<%= @owner.username %>" ></label>
-  <label>New Password: <input type="text"  name="password" value="<%= @owner.password %>" ></label>  
+  <label>New Name: <input type="text" name="name" value="<%= @owner.name %>"></label><br>
+  <br>
+  <label>New Username: <input type="text"  name="username" value="<%= @owner.username %>" ></label><br>
+  <br>
+  <label>New Password: <input type="text"  name="password" value="<%= @owner.password %>" ></label><br>
+  <br>
   <input type="submit">
       <br>
     </form>
@@ -15,5 +19,7 @@
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Profile">
   </form>
+  <br>
+  <hr>
   <br>
   <p><a href="/owners/<%= current_user.id %>">Back</a></p>

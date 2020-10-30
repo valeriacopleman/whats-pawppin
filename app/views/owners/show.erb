@@ -4,16 +4,19 @@
 <hr>
 <br>
 <h2><a href="/parks">My Favorite Dog Parks</a></h2>
+
 <h3>My Dogs:</h3>
-<% current_user.dogs.each do |d| %>
+<hr>
+<br>
+<% current_user.dogs.each.with_index do |d| %>
     <h4><%= d.name %> </h4>
-    <li>Age: <%= d.age %></li>
-    <p>Breed: <%= d.breed %></p>
+    <li> > Age: <%= d.age %></li>
+    <p>> Breed: <%= d.breed %></p>
   <% end %>
 <p><a href="/dogs/new">+ Add Dog</a></p>
 <p><a href="/dogs">+ Edit Dog</a></p>
 <hr>
 <br>
 <p><a href="/logout">Log Out</a></p>
-<p><a href="/owners/<%= @owner.id %>/edit">Edit Profile</a></p>
+<p><a href="/owners/<%= @owner.id %>/edit">+ Edit Profile</a></p>
 </div>

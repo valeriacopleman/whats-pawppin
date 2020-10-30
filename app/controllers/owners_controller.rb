@@ -1,34 +1,15 @@
 class OwnersController < ApplicationController
   
-  get '/owners/new' do
+  get '/signup' do
     if logged_in?
       erb :'owners/show'
     else
-      erb :'/owners/new'
+      erb :'owners/signup'
     end
   end
 
-  get '/owners' do
-    @owner = current_user.owners
-    redirect "/owners/#{@owner.id}" 
-    #redirect '/owners/#{@owner.id}'
-  end
-    
-  get '/login' do
-      erb :'/owners/index'
-  end
-
-  post '/owners' do
-    @owner = Owner.find_by(username: params[:username])
-    if @owner && @owner.authenticate(params[:password])
-      session[:owner_id] = @owner.id
-      erb :'owners/show'
-    else
-      erb :failure
-    end
-  end
-
-  post '/owners/new' do
+#signup
+  post '/signup' do
     if params[:name] == "" || params[:username] == "" || params[:password] == ""
       redirect '/failure'
     else
@@ -40,6 +21,12 @@ class OwnersController < ApplicationController
                 #redirect to "/users/#{@user.id}"
       end
     end
+  end
+
+  get '/owners' do
+    @owner = current_user.owners
+    redirect "/owners/#{@owner.id}" 
+    #redirect '/owners/#{@owner.id}'
   end
 
     get "/failure" do
@@ -73,17 +60,10 @@ class OwnersController < ApplicationController
           redirect "/owners/#{owner.id}/edit"
         end
       end
-  
-
-
-      get "/logout" do
-        session.clear
-        redirect "/"
-      end
 
       delete '/owners/:id' do
         @owner = Owner.find_by_id(params[:id])
-        if logged_in? && @owner == current_user
+        if logged_in? && @owner == current_owner
           @owner.dogs.each do |d|
             d.delete
           end
