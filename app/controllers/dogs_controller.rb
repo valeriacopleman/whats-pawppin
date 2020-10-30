@@ -1,42 +1,56 @@
 class DogsController < ApplicationController
 
     get '/dogs' do
-        #binding.pry
-        @dogs = current_user.dogs
-        erb :'dogs/index'
-      end
+        if logged_in?
+            @dogs = current_user.dogs
+            erb :'dogs/index'
+        else
+            erb :fail2
+        end
+    end
   
-      get '/dogs/new' do
-        erb :'dogs/new'
-      end
+    get '/dogs/new' do
+        if logged_in?
+            erb :'dogs/new'
+        else
+            erg :fail2
+        end
+    end
   
-      post '/dogs' do
+    post '/dogs' do
         dog = current_user.dogs.build(params)
         if dog.save
           redirect "/dogs/#{dog.id}"
         else
           redirect '/dogs/new'
         end
-      end
+    end
 
-      get '/dogs/:id' do
-        #binding.pry
-        @dog = Dog.find_by(id: params[:id])
-        if @dog
-          erb :'dogs/show'
+    get '/dogs/:id' do
+        if logged_in?
+            @dog = current_user.dogs.find_by(id: params[:id])
+            if @dog
+                erb :'dogs/show'
+            else
+                redirect '/dogs'
+            end
         else
-          redirect '/dogs'
+            erb :fail2
         end
-      end
+    end
   
-      get '/dogs/:id/edit' do
-        @owner = Owner.all 
-        @dog = Dog.find_by(params)
-        erb :'dogs/edit'
-      end
+    get '/dogs/:id/edit' do
+        if logged_in?
+            @dog = current_user.dogs.find_by(params)
+            erb :'dogs/edit'
+            if @dog 
+
+            end
+
+    end
   
       patch '/dogs/:id' do 
-        dog = Dog.find_by(id: params[:id])
+        dog = current_user.dogs.find_by(id: params[:id])
         if dog.update(name: params[:name], age: params[:age], breed: params[:breed])
           redirect "/dogs/#{dog.id}"
         else 
@@ -45,7 +59,7 @@ class DogsController < ApplicationController
       end
   
       delete '/dogs/:id' do
-        @dog = Dog.find_by(id: params[:id])
+        @dog = current_user.dogs.find_by(id: params[:id])
         @dog.destroy
         redirect '/dogs'
       end

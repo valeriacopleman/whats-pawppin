@@ -12,21 +12,23 @@ class OwnersController < ApplicationController
   post '/signup' do
     if params[:name] == "" || params[:username] == "" || params[:password] == ""
       redirect '/failure'
+      #need an elsif to check if username is taken?
     else
       @owner = Owner.new(name: params[:name], username: params[:username], password: params[:password])
       if @owner.save
         session[:owner_id] = @owner.id
         erb :'owners/show'
-                #redirect to "dogparks/parks"
-                #redirect to "/users/#{@user.id}"
       end
     end
   end
 
   get '/owners' do
-    @owner = current_user.owners
-    redirect "/owners/#{@owner.id}" 
-    #redirect '/owners/#{@owner.id}'
+    @owner = current_user
+    if logged_in?
+      redirect "/owners/#{@owner.id}" 
+    else
+      erb :fail2
+    end
   end
 
     get "/failure" do

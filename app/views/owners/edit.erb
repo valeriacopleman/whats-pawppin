@@ -1,6 +1,5 @@
-<h1>Edit Profile:</h1>
-<hr>
-<br>
+<h2>Edit Profile:</h2>
+
 <form method="POST" action="/owners/<%= @owner.id %>">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
       
@@ -22,4 +21,4 @@
   <br>
   <hr>
   <br>
-  <p><a href="/owners/<%= current_user.id %>">Back</a></p>
+  <p><a href="/owners/<%= current_user.id %>">Cancel</a></p>

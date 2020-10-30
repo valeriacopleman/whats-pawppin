@@ -1,9 +1,9 @@
 <h1>My Dog Parks:</h1>
 <hr>
-<br>
     <% current_user.parks.each do |p| %>
-        <p><h3><a href="/parks/<%= p.id %>"><%= p.name %></a></h3></p>
+        <h3><a href="/parks/<%= p.id %>"><%= p.name %></a></h3>
     <% end %>
+    <br>
 <p><a href="/parks/new">+ Add A Dog Park</a></p>
 
 <hr>
