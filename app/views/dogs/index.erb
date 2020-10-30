@@ -1,13 +1,16 @@
 <h1>My Dogs:</h1>
-<hr>
+
 <br>
 <ul>
   <% current_user.dogs.each do |dog| %>
+    <hr>
+    <br>
     <h4><%= dog.name %></h4>
     <li>Age: <%= dog.age %></li>
     <li><p>Breed: <%= dog.breed %></p></li>
     <a href="/dogs/<%= dog.id %>/edit">+ Edit/Delete Dog</a>
-  <% end %>
+  <br>
+    <% end %>
 </ul>
 <br>
 <hr>

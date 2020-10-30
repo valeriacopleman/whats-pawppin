@@ -10,15 +10,12 @@ class OwnersController < ApplicationController
 
 #signup
   post '/signup' do
-    if params[:name] == "" || params[:username] == "" || params[:password] == ""
-      redirect '/failure'
-      #need an elsif to check if username is taken?
+    @owner = Owner.new(name: params[:name], username: params[:username], password: params[:password])
+    if @owner.save
+      session[:owner_id] = @owner.id
+      erb :'owners/show'
     else
-      @owner = Owner.new(name: params[:name], username: params[:username], password: params[:password])
-      if @owner.save
-        session[:owner_id] = @owner.id
-        erb :'owners/show'
-      end
+      redirect '/failure'
     end
   end
 

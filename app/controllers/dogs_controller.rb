@@ -13,7 +13,7 @@ class DogsController < ApplicationController
         if logged_in?
             erb :'dogs/new'
         else
-            erg :fail2
+            erb :fail2
         end
     end
   
@@ -42,23 +42,32 @@ class DogsController < ApplicationController
     get '/dogs/:id/edit' do
         if logged_in?
             @dog = current_user.dogs.find_by(params)
-            erb :'dogs/edit'
             if @dog 
-
+                erb :'dogs/edit'
+            else
+                redirect "/dogs"
             end
-
+        else
+            erb :fail2
+        end
     end
   
       patch '/dogs/:id' do 
+        #if it wasnt my dog rediret /dogs
         dog = current_user.dogs.find_by(id: params[:id])
-        if dog.update(name: params[:name], age: params[:age], breed: params[:breed])
-          redirect "/dogs/#{dog.id}"
-        else 
-          redirect "dogs/#{dog.id}/edit"
+        if dog
+            if dog.update(name: params[:name], age: params[:age], breed: params[:breed])
+                redirect "/dogs/#{dog.id}"
+            else 
+                redirect "dogs/#{dog.id}/edit"
+            end
+        else
+            redirect "/dogs"
         end
       end
   
       delete '/dogs/:id' do
+        
         @dog = current_user.dogs.find_by(id: params[:id])
         @dog.destroy
         redirect '/dogs'
