@@ -18,12 +18,14 @@ class DogsController < ApplicationController
     end
   
     post '/dogs' do
-        dog = current_user.dogs.build(params)
-        if dog.save
-          redirect "/dogs/#{dog.id}"
-        else
-          redirect '/dogs/new'
-        end
+        #if params[:age]
+            dog = current_user.dogs.build(params)
+            if dog.save
+                redirect "/dogs/#{dog.id}"
+            else
+                redirect '/dogs/new'
+            end
+        
     end
 
     get '/dogs/:id' do
@@ -55,7 +57,7 @@ class DogsController < ApplicationController
       patch '/dogs/:id' do 
         #if it wasnt my dog rediret /dogs
         dog = current_user.dogs.find_by(id: params[:id])
-        if dog
+        if dog 
             if dog.update(name: params[:name], age: params[:age], breed: params[:breed])
                 redirect "/dogs/#{dog.id}"
             else 

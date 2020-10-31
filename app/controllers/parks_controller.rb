@@ -1,12 +1,16 @@
 class ParksController < ApplicationController
 
   get '/parks' do
-    @parks = Park.all
+    @parks = current_user.parks
     erb :'parks/index'
   end
  
     get '/parks/new' do
-      erb :'parks/new'
+      if logged_in?
+        erb :'parks/new'
+      else
+        erb :fail2
+      end
     end
 
     post '/parks' do
@@ -19,18 +23,29 @@ class ParksController < ApplicationController
     end
 
     get '/parks/:id' do
-      @park = Park.find_by(id: params[:id])
-      if @park
-        erb :'parks/show'
+      if logged_in?
+        @park = current_user.dogs.find_by(id: params[:id])
+        if @park
+          erb :'parks/show'
+        else
+          redirect '/parks'
+        end
       else
-        redirect '/parks'
+        erb :fail2
       end
     end
 
     get '/parks/:id/edit' do
-      @owner = Owner.all 
-      @park = Park.find_by(id: params[:id])
-      erb :'parks/edit'
+      if logged_in?
+        @park = current_user.dogs.find_by(id: params[:id])
+        if @park
+          erb :'parks/edit'
+        else
+          redirect '/parks'
+        end
+      else 
+        erb :fail2
+      end
     end
 
     patch '/parks/:id' do 
