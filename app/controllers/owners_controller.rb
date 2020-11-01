@@ -9,7 +9,7 @@ class OwnersController < ApplicationController
   end
 
   post '/signup' do
-    @owner = Owner.new(name: params[:name], username: params[:username], password: params[:password])
+    @owner = Owner.new(params)
     if @owner.save
       session[:owner_id] = @owner.id
       redirect "/whatspawppin"
@@ -20,43 +20,15 @@ class OwnersController < ApplicationController
 
   get '/whatspawppin' do
     @owner = current_user
-    if logged_in? && @owner == current_user
-      #redirect "/whatspawppin/#{@owner.id}" 
+    if logged_in? && @owner == current_user 
       erb :'owners/index'
     else
       erb :fail2
     end
   end
 
-  #get '/owners' do
-   # @owner = current_user
-   # if logged_in?
-   #   redirect "/owners/#{@owner.id}" 
-   # else
-    #  erb :fail2
-   # end
-  #end
-
-    get "/failure" do
-        erb :failure
-      end
-
-      #get '/owners/:id' do
-      #  @owner = Owner.find_by(id: params[:id])
-       # if logged_in? && @owner == current_user
-       #   erb :'owners/show'
-      #  else
-       #   erb :fail2
-       # end
-      #end
-
-      #patch '/owners/:id' do 
-       # owner = Owner.find_by(id: params[:id])
-       # if owner.update(name: params[:name], username: params[:username], password: params[:password])
-        #  redirect "/owners/#{owner.id}"
-       # else 
-        #  redirect "/owners/#{owner.id}/edit"
-       # end
-     # end
+  get "/failure" do
+    erb :failure
+  end
 
 end

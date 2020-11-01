@@ -18,14 +18,12 @@ class DogsController < ApplicationController
     end
   
     post '/dogs' do
-        #if params[:age]
-            dog = current_user.dogs.build(params)
+        dog = current_user.dogs.build(params)
             if dog.save
                 redirect "/dogs/#{dog.id}"
             else
                 redirect '/dogs/new'
             end
-        
     end
 
     get '/dogs/:id' do
@@ -55,7 +53,6 @@ class DogsController < ApplicationController
     end
   
       patch '/dogs/:id' do 
-        #if it wasnt my dog rediret /dogs
         dog = current_user.dogs.find_by(id: params[:id])
         if dog 
             if dog.update(name: params[:name], age: params[:age], breed: params[:breed])
@@ -69,10 +66,16 @@ class DogsController < ApplicationController
       end
   
       delete '/dogs/:id' do
-        
-        @dog = current_user.dogs.find_by(id: params[:id])
-        @dog.destroy
-        redirect '/dogs'
+        if logged_in?
+            @dog = current_user.dogs.find_by(id: params[:id])
+            if @dog
+                @dog.destroy
+                redirect '/dogs'
+            end
+        else
+            erb :fail2
+        end
+
       end
 
 end

@@ -1,4 +1,5 @@
 class Owner < ActiveRecord::Base
+
     has_many :parks
     has_many :dogs
 
@@ -6,4 +7,5 @@ class Owner < ActiveRecord::Base
     validates :username, uniqueness: true
 
     has_secure_password
+    
 end

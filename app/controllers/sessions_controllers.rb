@@ -1,22 +1,22 @@
 class SessionsController < ApplicationController
 
-    get '/login' do
-        erb :'sessions/login'
-    end
+  get '/login' do
+    erb :'sessions/login'
+  end
 
-    post '/login' do
-        @owner = Owner.find_by(username: params[:username])
-        if @owner && @owner.authenticate(params[:password])
-          session[:owner_id] = @owner.id
-          redirect '/whatspawppin'
-        else
-          erb :failure
-        end
+  post '/login' do
+    @owner = Owner.find_by(username: params[:username])
+      if @owner && @owner.authenticate(params[:password])
+        session[:owner_id] = @owner.id
+        redirect '/whatspawppin'
+      else
+        erb :failure
       end
-
-    get '/logout' do
-        session.clear
-        redirect "/"
     end
+
+  get '/logout' do
+      session.clear
+      redirect "/"
+  end
 
 end

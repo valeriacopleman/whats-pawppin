@@ -1,5 +1,4 @@
 <h2>Edit/Delete Dog Park</h2>
-
 <br>
 <form method="POST" action="/parks/<%= @park.id %>"> 
 <input type="hidden" id='hidden' name="_method" value="PATCH">
@@ -11,11 +10,10 @@
     <br>
     <input type="submit">
 </form>
-
 <p><form method="POST" action="/parks/<%= @park.id %>">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Park">
   </form></p>
 <hr>
 <br>
-  <a href="/parks/<%= @park.id %>">Cancel</a>
+<a href="/parks/<%= @park.id %>">Cancel</a>
